@@ -48,7 +48,7 @@ class NotesProvider : ContentProvider() {
         throw UnsupportedSchemeException("Not implemented yet!")
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        if (uriMatcher.match(uri) == NOTES_BY_ID) {
+        if (uriMatcher.match(uri) == NOTES) {
             val db: SQLiteDatabase = dbHelper.writableDatabase
             val id = db.insert(
                 NotesDatabaseHelper.TABLE_NOTES,
@@ -58,7 +58,7 @@ class NotesProvider : ContentProvider() {
             context?.contentResolver?.notifyChange(uri, null)
             return insertUri
         } else {
-            throw UnsupportedSchemeException("URL inválida pra exclusão")
+            throw UnsupportedSchemeException("URL inválida pra inserção")
         }
     }
 
